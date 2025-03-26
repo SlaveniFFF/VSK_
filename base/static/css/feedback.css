@@ -1,0 +1,117 @@
+/* Общий контейнер для списка заявок */
+.feedback-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: 'Roboto', Arial, sans-serif;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #FF5F15, #FF5F15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+
+}
+.or2 {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #FF6F91, #FFC75F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.title {
+    background: linear-gradient(90deg, #1f2874, #121934);
+    color: #ffffff;
+    padding-top: 100px;
+} 
+
+/* Заголовок списка заявок */
+.feedback-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Список заявок */
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Элемент заявки */
+.feedback-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px #FF5F15;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.feedback-item:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 6px 10px #FF5F15;
+}
+
+/* Информация о заявке */
+.feedback-info {
+    flex-grow: 1;
+}
+
+.feedback-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.feedback-details {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    gap: 10px;
+}
+
+.feedback-date {
+    font-weight: 500;
+}
+
+.feedback-phone {
+    font-style: italic;
+}
+
+/* Стрелка перехода */
+.feedback-arrow {
+    font-size: 20px;
+    color: #FF5F15;
+}
+
+/* Разделитель между заявками */
+.feedback-separator {
+    height: 1px;
+    background: #ddd;
+    margin: 10px 0;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .feedback-container {
+        max-width: 100%;
+        margin: 15px;
+    }
+
+    .feedback-item {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .feedback-arrow {
+        font-size: 16px;
+    }
+}

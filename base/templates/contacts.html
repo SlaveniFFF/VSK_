@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/contacts.css' %}">
+
+<div class="title">
+    <div class="or2">Контакты</div>
+    <h2 class="ob">Как нас найти</h2>
+<div>
+
+<div class="row no-gutters" style="background-color: #121934; justify-content: center; color:#ffffff; padding:100px 0px">
+    <div class="col-12 d-flex justify-content-center">
+        <div class="contact-card p-4">
+            <p><strong>Адрес:</strong> г. Москва, ул. Строительная, д. 10</p>
+            <p><strong>Телефон:</strong> <a href="tel:+79991234567" class="contact-link">+7 (999) 123-45-67</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@stroycompany.ru" class="contact-link">info@stroycompany.ru</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

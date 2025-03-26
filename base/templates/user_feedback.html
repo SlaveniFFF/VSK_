@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/feedback.css' %}">
+<div class="title">
+    <div class="or2">Мои заявки</div>
+<div>
+<div class="feedback-container">
+    <div class="feedback-list">
+        {% for feedback in feedbacks %}
+            <a href="{% url 'user_chat_detail_view' feedback.id %}" class="feedback-item">
+                <div class="feedback-info">
+                    <div class="feedback-name">{{ feedback.name }}</div>
+                    <div class="feedback-details">
+                        <span class="feedback-date">{{ feedback.created_at|date:"d.m.Y H:i" }}</span>
+                        <span class="feedback-status">Статус: {{ feedback.get_status_display }}</span>
+                    </div>
+                </div>
+                <div class="feedback-arrow">ᐅ</div>
+            </a>
+            <div class="feedback-separator"></div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

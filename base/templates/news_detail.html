@@ -1,0 +1,227 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}">
+
+    <div class="container-fluid" style="padding: 100px 0;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div>
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                            <li class="breadcrumb-item"><a href="/news">Новости</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ news_item.title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- Карточка Новости -->
+                <div class="news-item" style="position: relative; border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 1); padding: 15px; background-color: #ffffff;">
+                    <div class="content d-flex flex-column align-items-center mt-3 cart_news">
+                        {% if news_item.image %}
+                            <div style="max-width: 100%; overflow: hidden; border-radius: 15px; display: flex; justify-content: center; align-items: center;">
+                                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" class="news-image">
+                            </div>
+                        {% endif %}
+                        <div class="text_news" style="width: 100%; padding: 10px;">
+                            <div class="news-title">{{ news_item.title }}</div>
+                            <p class="news-content">{{ news_item.content }}</p>
+                            <hr style="border-color:#e0e0e0;">
+                            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                                <div class="news-meta">
+                                    <p class="meta-item">
+                                        <img src="{% static 'img/calendar.gif'%}" alt="Календарь" class="meta-icon">
+                                        Опубликовано: <span style="font-weight: bold;">{{ news_item.published_at }}</span>
+                                    </p>
+                                    <p class="meta-item">
+                                        <img src="{% static 'img/writer.gif'%}" alt="Автор" class="meta-icon">
+                                        Автор: <span style="font-weight: bold;">{{ news_item.user.username }}</span>
+                                    </p>
+                                    <p class="meta-item" style="margin-bottom: 0;">
+                                        <img src="{% static 'img/eye1.gif'%}" alt="Просмотры" class="meta-icon">
+                                        Просмотры: <span style="font-weight: bold;">{{ news_item.views }}</span>
+                                    </p>
+                                </div> 
+                            </div>
+                            <button type="button" class="btn btn-primary" style="padding: 10px; margin-bottom:0px; margin-top:20px;">
+                                <a href="" style="color:#fff; text-decoration:none;"> Посмотреть на карте </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопки под Новостью -->
+                <div style="display: flex; justify-content: space-between;">
+                    <a href="{% url 'news_list' %}" class="btn btn-primary" style="flex: 1; margin: 10px 20px 10px 0; display: flex; align-items: center; justify-content: center; padding: 0px;">
+                        <img src="{% static 'img/left.png' %}" alt="" style="width: 20px; height: 20px; margin-right: 5px;">
+                        Вернуться к списку новостей
+                    </a>
+                    {% if is_authenticated %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal" style="flex: 1; padding: 10px;">
+                            Добавить комментарий
+                        </button>
+                    {% else %}
+                        <button class="btn btn-secondary" style="flex: 1; padding: 10px;">
+                           <a href="{% url 'loginn' %}" style="color:#fff; text-decoration:none;"> Войдите, чтобы добавить комментарий </a>
+                        </button>
+                    {% endif %}
+                </div>
+
+                <!-- Модальное окно для создания комментария -->
+                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" style="background-color: #1d1f27; padding: 20px; border-radius:10px;">
+                            <div class="modal-header" style="border-bottom: 1px solid #444; display: flex; justify-content: center;">
+                                <h4 class="modal-title" id="reviewModalLabel">Добавить комментарий</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{% url 'add_review' news_item.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <textarea name="content" class="form-control" placeholder="Ваш комментарий" required style="background-color: #2a2e39; color: #ffffff; border: 2px solid #444;"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="rating" class="form-control" required style="background-color: #2a2e39; color: #ffffff; border: 2px solid #444;">
+                                            <option value="">Выберите рейтинг</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Отправить</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Закрыть</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Комментарии к Новости -->
+                <h2 class="mt-5">Комментарии:</h2>
+                <div class="reviews">
+                    {% if news_item.reviews.all.count == 0 %}
+                        <p>Комментариев пока нет.</p>
+                    {% else %}
+                        {% for review in news_item.reviews.all %}
+                            <div class="review" style="display: flex; padding: 10px; margin: 10px 0; border-radius: 5px;">
+                                <div style="margin-right: 10px;">
+                                    {% if review.user.avatar.image %}
+                                        <img src="{{ review.user.avatar.image.url }}" alt="Аватарка" style="width: 80px; height: 80px; border-radius: 10%;">
+                                    {% else %}
+                                        <img src="{% static './img/default_avatar.jpg' %}" alt="Аватарка" style="width: 80px; height: 80px; border-radius: 10%;">
+                                    {% endif %}
+                                </div>
+                                <div style="flex-grow: 1;">
+                                    <div class="review-content">
+                                        <p class="review-user" style="">#{{ review.user.username }}</p>
+                                        <p class="review-created_at" style="">{{ review.created_at }}</p>
+                                    </div>
+                                    <p class="review-text" style="">{{ review.content }}</p>
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <p style="margin: 0; margin-right: 10px;"><strong>Рейтинг:</strong></p>
+                                        <div style="margin: 0; margin-right: 10px;" class="star">
+                                            {% for i in "★★★★★" %}
+                                                {% if forloop.counter <= review.rating %}
+                                                    <span style="color: #1e1e2c;">{{ i }}</span>
+                                                {% else %}
+                                                    <span style="color: gray;">{{ i }}</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% if is_authenticated %}
+                                            <a href="#" class="text-response" data-toggle="modal" data-target="#responseModal{{ review.id }}">Ответить</a>
+                                        {% else %}
+                                            <a href="{% url 'loginn' %}" class="text-response">Авторизуйтесь</a>
+                                        {% endif %}
+                                    </div>
+                                    <a href="#" class="toggle-responses" style="color: #007bff; text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: color 0.3s;">
+                                        Ответы
+                                        <img src="{% static 'img/down-dark.png' %}" alt="Стрелка вниз" style="width: 15px; height: 15px; vertical-align: middle; margin-left: 4px;">
+                                    </a>
+
+                                    <!-- Ответы на комментарий -->
+                                    <div class="responses" style="display: none; margin-top: 10px;">
+                                        {% for response in review.responses.all %}
+                                            <div style="display: flex; align-items: center; margin-left: 10px; margin-bottom: 10px;">
+                                                <div style="margin-right: 10px;">
+                                                    {% if response.user.avatar.image %}
+                                                        <img src="{{ response.user.avatar.image.url }}" alt="Аватарка" class="avatar">
+                                                    {% else %}
+                                                        <img src="{% static './img/default_avatar.jpg' %}" alt="Аватарка" class="avatar">
+                                                    {% endif %}
+                                                </div>
+                                                <div style="flex-grow: 1;">
+                                                    <p class="username"><strong>#{{ response.user.username }}</strong></p>
+                                                    <p class="response-content" style="">{{ response.content }}</p>
+                                                </div>
+                                            </div>
+                                        {% empty %}
+                                            <p style="margin-left: 10px; font-size: 14px;">Нет ответов на этот комментарий</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Модальное окно для создания ответа на комментарий -->
+                            <div class="modal fade" id="responseModal{{ review.id }}" tabindex="-1" role="dialog" aria-labelledby="responseModalLabel{{ review.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content" style="background-color: #1d1f27; padding: 20px; border-radius: 10px;">
+                                        <div class="modal-header" style="border-bottom: 1px solid #444; display: flex; justify-content: center;">
+                                            <h4 class="modal-title" id="responseModalLabel{{ review.id }}">Ответить на комментарий</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <textarea name="content" class="form-control" placeholder="Ваш ответ" required style="background-color: #2a2e39; color: #ffffff; border: 2px solid #444;"></textarea>
+                                                </div>
+                                                <input type="hidden" name="review_id" value="{{ review.id }}">
+                                                <button type="submit" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Отправить</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Закрыть</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="border-color: #000000;">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Скрипт для скрытия ответов на комментарий -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-responses');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const responses = this.closest('.review').querySelector('.responses');
+                    const isVisible = responses.style.display === 'block';
+                    responses.style.display = isVisible ? 'none' : 'block';
+
+                    const imgElement = this.querySelector('img');
+                    const originalText = 'Ответы';
+                    const newText = 'Скрыть ответы';
+
+                    if (isVisible) {
+                        imgElement.src = "{% static 'img/down-dark.png' %}";
+                        imgElement.alt = "Стрелка вниз";
+                        this.innerHTML = `${originalText}<img src="{% static 'img/down-dark.png' %}" alt="Стрелка вниз" style="width: 15px; height: 15px; vertical-align: middle; margin-left: 4px;">`;
+                    } else {
+                        imgElement.src = "{% static 'img/up-dark.png' %}";
+                        imgElement.alt = "Стрелка вверх";
+                        this.innerHTML = `${newText}<img src="{% static 'img/up-dark.png' %}" alt="Стрелка вверх" style="width: 15px; height: 15px; vertical-align: middle; margin-left: 4px;">`;
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+

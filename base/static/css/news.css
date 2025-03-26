@@ -1,0 +1,350 @@
+:root {
+    /* Цветовая палитра */
+    --primary-color: #FF5F15; /* Основной акцентный цвет */
+    --secondary-color: #1f2874; /* Вторичный цвет */
+    --accent-light: #FFC75F; /* Светлый акцент */
+    --accent-dark: #FF6F91; /* Темный акцент */
+    --text-light: #ffffff; /* Белый текст */
+    --text-dark: #000000; /* Черный текст */
+    --text-gray: #494949; /* Серый текст */
+    --background-light: #ffffff; /* Светлый фон */
+    --background-dark: #1e1e2c; /* Темный фон */
+    --overlay-bg: rgba(0, 0, 0, 0.7); /* Фон оверлея */
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Тень */
+    --border-radius: 10px;
+    --transition-speed: 0.3s ease;
+}
+
+/* Общие стили */
+body {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container-fluid {
+    color: var(--text-dark);
+    padding: 100px 0;
+    overflow-x: hidden;
+}
+
+/* Заголовки */
+.title {
+    background: linear-gradient(90deg, var(--secondary-color), #121934);
+    color: var(--text-light);
+    text-align: center;
+    padding-top: 100px;
+}
+
+h4{
+    color: var(--text-light);
+}
+
+.or2 {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ob {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 5rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Стили для формы фильтрации */
+.filter-form {
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, var(--secondary-color), #121934);
+    padding: 20px 60px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.filter-label{
+    color: var(--text-light);
+}
+
+.filter-select {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    border: 1px solid var(--text-gray);
+    border-radius: 5px;
+    width: 100%;
+    transition: border-color var(--transition-speed);
+}
+
+.filter-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+
+/* Новости */
+.news-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    color: var(--text-light);
+}
+
+.news-overlay {
+    background: linear-gradient(to top, var(--overlay-bg), transparent);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.news-title {
+    font-size: 30px;
+    line-height: 1.4;
+    color: var(--primary-color);
+    padding: 20px 0;
+}
+
+.news-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+.news-content {
+    font-size: 20px;
+    line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Отзывы */
+.reviews {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    color: var(--text-dark);
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.review strong {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.review small {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.review-content{
+    margin-bottom: 5px;
+}
+
+.review-user{
+    color: var(--primary-color);
+    font-size: 16px;
+    display: inline;
+}
+
+.review-text{
+    margin-bottom: 5px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.review-created_at{
+    color: var(--text-gray);
+    font-size: 14px;
+    display: inline;
+    margin-left: 10px;
+}
+
+/* Ответы на Отзывы */
+.text-response {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.text-response:hover {
+    color: var(--text-gray);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+.username {
+    margin: 0;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+.date {
+    margin: 0;
+    color: gray;
+    font-size: 12px;
+}
+
+.response-content {
+    font-size: 14px;
+    margin-bottom: 2px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    display: inline-block;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Форма */
+textarea,
+select,
+button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+textarea:focus {
+    background-color: #2a2a40;
+}
+
+button:hover {
+    background-color: #013b79;
+}
+
+.meta-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.meta-item {
+    font-size: 16px;
+}
+
+.card-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-icon {
+    width: 60%;
+    height: 60%;
+    pointer-events: none;
+}
+
+.link-text {
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+.link-text:hover {
+    color: var(--text-light);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .or2 {
+        font-size: 40px;
+    }
+
+    .ob {
+        font-size: 32px;
+    }
+
+    .news-title {
+        font-size: 24px;
+    }
+
+    .news-content {
+        font-size: 18px;
+    }
+
+    .meta-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .meta-item {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .username {
+        font-size: 10px;
+    }
+
+    .date {
+        font-size: 10px;
+    }
+
+    .news-title {
+        font-size: 20px;
+    }
+
+    .news-content {
+        font-size: 16px;
+    }
+
+    .meta-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .meta-item {
+        font-size: 12px;
+    }
+}

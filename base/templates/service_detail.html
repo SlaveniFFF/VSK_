@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/service-detail.css' %}">
+<div class="container">
+
+    <div>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item"><a href="/services">Услуги</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ service.name }}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Заголовок услуги -->
+    <h1 class="title">{{ service.name }}</h1>
+
+    <!-- Основное изображение -->
+    <div class="image-container">
+        {% if service.image %}
+            <img src="{{ service.image.url }}" alt="{{ service.name }}" class="main-image">
+        {% endif %}
+    </div>
+
+    <!-- Полное описание -->
+    {% if details and details.full_description %}
+        <div class="description-container">
+            <h4 class="subtitle">Полное описание:</h4>
+            <p class="description">{{ details.full_description }}</p>
+        </div>
+    {% else %}
+        <p class="no-data">Полное описание отсутствует.</p>
+    {% endif %}
+
+    <!-- Дополнительный текст -->
+    {% if details and details.dop_text %}
+        <div class="text-container mb-5">
+            <div class="text-content">
+                {% for line in details.dop_text.splitlines %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Дополнительная информация -->
+    {% if dop_info %}
+        <div class="info-container">
+            <div class="info-list">
+                {% for info in dop_info %}
+                    <div class="info-item">
+                        <h5 class="info-title">{{ info.title }}</h5>
+                        <div class="info-content">
+                            <img src="{% static 'img/tick.png' %}" alt="Иконка" class="info-icon">
+                            <p class="info-subtitle">{{ info.subtitle }}</p>
+                        </div>
+                        {% for line in info.content.splitlines %}
+                            <p class="info-text"> — {{ line }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p class="no-data">Дополнительная информация отсутствует.</p>
+    {% endif %}
+
+    <!-- Галерея изображений -->
+    {% if gallery_images %}
+        <div class="gallery-container">
+            <div class="gallery">
+                {% for image in gallery_images %}
+                    <img src="{{ image.image.url }}" alt="Изображение" class="gallery-image">
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Кнопка "Назад к услугам" -->
+    <a href="{% url 'services' %}" class="btn btn-primary mt-5 mb-5">Назад к услугам</a>
+</div>
+{% endblock %}

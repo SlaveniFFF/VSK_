@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/chats.css' %}">
+
+<div class="chat-container">
+    <h1 class="chat-title">Чат по заявке {{ feedback.name }} ({{ feedback.phone_number }})</h1>
+    <div class="message-list">
+        {% for chat in chats %}
+            <div class="message {% if chat.user == request.user %} outgoing {% else %} incoming {% endif %}">
+                <div class="message-header">
+                    <span class="username">{{ chat.user.username }}</span>
+                    <span class="timestamp">ㅤ{{ chat.created_at|date:"H:i" }}</span>
+                </div>
+                <div class="message-content">{{ chat.message }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <form method="post" class="message-form">
+        {% csrf_token %}
+        <div class="input-group">
+            {{ form.message }}
+            <button type="submit" class="send-button">Отправить</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

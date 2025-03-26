@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Первая колонка -->
+        <div class="row no-gutters" style="color: white;">
+            <div class="col-12 position-relative">
+                <img src="{% static 'img/gruz.jpg' %}" alt="Example Image" class="img-fluid mb3" style="filter: brightness(50%); transform: scale(-1, 1); width: 100%; height: auto;">
+                <div class="text-left position-absolute" style="top: 50%; left: 10%; transform: translateY(-50%);">
+                    <h5 style="font-size: clamp(18px, 3vw, 40px);">Дорожно-строительная компания ООО “ВСК”</h5>
+                    <h2 class="mt-2 mb-2" style="font-size: clamp(30px, 5vw, 86px);">Мы строим, вы <br> наслаждаетесь!</h2>
+                    <button class="btn btn-custom mt-2" style="font-size: clamp(10px, 2vw, 45px); border-radius: 10px; border: 4px solid rgb(212, 75, 20);" id="scrollButton" onclick="scrollToBottom()">Оставить заявку</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Вторая колонка -->
+        <div class="row justify-content-center no-gutters bgg">
+            <div class="col-12 text-center" style="margin: 30px;">
+                <div class="d-flex justify-content-center flex-wrap" style="position: relative; z-index: 2;">
+                    <div class="square"> 
+                        <div style="font-weight: 800; font-size: clamp(30px, 3vw, 60px);">12<b style="color: #FF5F15;">+</b></div>
+                        <div style="font-size: clamp(20px, 3vw, 40px); padding: 0px 20px">лет <br/>опыта</div> 
+                    </div>
+                    <div class="square"> 
+                        <div style="font-weight: 800; font-size: clamp(30px, 3vw, 60px);">100<b style="color: #FF5F15;">+</b></div>
+                        <div style="font-size: clamp(20px, 3vw, 40px)">довольных <br/>клиентов</div> 
+                    </div>
+                    <div class="square"> 
+                        <div style="font-weight: 800; font-size: clamp(30px, 3vw, 60px);">200<b style="color: #FF5F15;">+</b></div>
+                        <div style="font-size: clamp(20px, 3vw, 40px)">успешных <br/>проектов</div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Третья колонка -->
+        <div class="row no-gutters" style="background-color: white;">
+            <div class="col-12">
+                <div class="or2 mt-5 mb-5" style="color: #FF5F15; font-size:52px">О Компании</div>
+                <div class="bl ml-5">
+                    <div style="font-size: clamp(22px, 3vw, 52px); font-weight: 800;">ООО “ВСК” - это</div>
+                    <div style="font-size: clamp(18px, 3vw, 35px);">Дорожно-строительная компания, которая находится на рынке с 2011 года.</div> 
+                    <div  class="mt-5 mb-5" style="font-size: clamp(18px, 3vw, 35px);">Компания ООО “ВСК” осуществляет обширный комплекс работ, связанный с дорожным строительством, аренде и продаже спецтехники, а также оказывает услуги по продаже недвижимости.</div>
+                </div>
+                <div class="col-12 text-center" style="">
+                    <div class="d-flex justify-content-center flex-wrap mb-5"> 
+                        <div class="square-bbl">  
+                            <img src="{% static 'img/Q1.png' %}" alt="Картинка" class="img-fluid" style="width: 50%;"> 
+                            <div class="mt-2" style="font-size: clamp(20px, 3vw, 40px); padding: 0px 50px">Качество</div>  
+                        </div> 
+                        <div class="square-bbl">  
+                            <img src="{% static 'img/S1.png' %}" alt="Картинка" class="img-fluid" style="width: 50%;"> 
+                            <div class="mt-2" style="font-size: clamp(20px, 3vw, 40px)">Надёжность</div>
+                        </div> 
+                        <div class="square-bbl"> 
+                            <img src="{% static 'img/P1.png' %}" alt="Картинка" class="img-fluid" style="width: 50%;"> 
+                            <div class="mt-2" style="font-size: clamp(20px, 3vw, 40px);">Пунктуальность</div>  
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Четвёртая колонка -->
+        
+        <div class="row no-gutters" style="background-color: #121934; justify-content: center; color:#ffffff; padding:100px 0px"> 
+            <div class="col-12"> 
+                <div class="or2" style="font-size:52px">Новости</div> 
+                <h2 class="ob mb-5" style="font-size:42px;">Наш Блог</h2> 
+            </div> 
+
+            {% for news in new %}
+                    <div class="col-12 col-sm-6 col-md-4 ml-5 mr-5"> 
+                        <a href="/news" style="text-decoration: none; color:white"><div class="card" style="background-image: url('{{ news.image.url }}');"> 
+                            <div class="card-body"> 
+                                <div style="background-color: rgba(0, 0, 0, 0.7); padding: 10px 10px"> 
+                                    <h5 class="card-title">{{ news.title }}</h5> 
+                                    <h6 class="card-text">{{ news.published_at }}</h6> 
+                                </div> 
+                                    <btn class="card-button"> 
+                                        <img src="{% static 'img/cart.svg' %}" alt="Иконка" class="button-icon"> 
+                                    </btn> 
+                                </div> 
+                            </div>
+                        </a>
+                    </div>
+            {% endfor %}
+        </div>
+
+
+
+    <!-- Пятая колонка -->
+        <div class="row no-gutters" style="background-color: white;">
+            <div class="col-12">
+                <div class="or2 mt-5" style="color: #FF5F15; font-size:52px">Партнёры</div>
+                <h2 class="ob mb-5" style="color: #121934; font-size:42px">Нам Доверяют</h2>
+                <marquee behavior="" direction="" height="" scrollamount="50">
+                    <img src="{% static 'img/img1.png' %}" alt="Картинка" class="img-fluid" style="width: 200px;">
+                    <img src="{% static 'img/img2.png' %}" alt="Картинка" class="img-fluid" style="width: 200px;">
+                    <img src="{% static 'img/img3.png' %}" alt="Картинка" class="img-fluid" style="width: 200px;"> 
+                    <img src="{% static 'img/img4.png' %}" alt="Картинка" class="img-fluid" style="width: 300px;">
+                    <img src="{% static 'img/img5.png' %}" alt="Картинка" class="img-fluid" style="width: 100px;">
+                </marquee>
+            </div>
+        </div>
+
+    <!-- Шестая колонка -->
+     
+    <div class="row no-gutters" style="background-color: #121934; justify-content: center;">
+        <div class="col-12">
+            <div class="or2 mt-5" style="font-size:52px">Контакты</div>
+            <h2 class="ob mb-5" style="font-size:42px">Выйти на связь</h2>
+        </div>
+        <div class="col-12 col-sm-6 col-md-8">
+            <form class="or2" style="border: 4px solid #FF5F15; border-radius: 15px; padding: 20px; margin:10px;">
+                {% csrf_token %}
+                <h1 class="tx1">Остались вопросы? Свяжитесь с нами</h1>
+                <h3 class="number1">+ 7 (4922) 47-11-54</h3>
+                <h3 class="number2">+ 7 (901) 161-55-80</h3>
+                <h2 class="tx1">Пн-Пт с 09:00 до 18:00</h2>
+            </form>
+            <form class="or1 mb-5" style="border: 4px solid #FF5F15; border-radius: 15px; padding: 20px; margin:10px; margin-bottom:30px" method="POST" action="{% url 'your_feedback_view' %}">
+                {% csrf_token %}
+                <div class="or2">
+                    <h1 class="tx1">Готовы начать? Оставьте заявку</h1>
+                    <h2 class="tx2">Оставьте Вашу заявку и наш менеджер <br> свяжется с Вами в ближайшее время</h2>
+                    <h2 class="tx2">Для оставления заявки вам нужно <a href="/login">Войти</a></h2>
+                </div>
+                <div class="form-group">
+                    <h2 for="name">Имя</h2>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="form-group"> 
+                    <h2 for="phone_number">Номер телефона</h2> 
+                    <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Введите ваш номер телефона"> 
+                </div> 
+                <div class="form-group">
+                    <h2 for="email">Email</h2>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Введите ваш email" required>
+                </div>
+                <div class="form-group">
+                    <h2 for="message">Сообщение</h2>
+                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Введите ваше сообщение" required></textarea>
+                </div>
+                <div class="text-center d-grid" style="margin: 30px 0px 10px 0px">
+                    <button class="btn btn-primary btn-lg" type="submit">Отправить</button>
+                </div>
+                <div id="responseMessage"></div>
+            </form>
+        </div>
+    </div>
+    
+    </div>
+</div>
+    
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}

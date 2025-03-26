@@ -1,0 +1,189 @@
+
+.square {
+    width: auto;
+    height: auto;
+    background-color: #ffffff;
+    padding: 100px 100px;
+    color: #121934;
+    display: flex;
+    flex-direction: column; /* Размещаем элементы по вертикали */
+    justify-content: center; /* Центруем текст по высоте */
+    align-items: center; /* Центруем текст по горизонтали */
+    text-align: center; 
+    margin: 20px auto;
+    border-radius: 20px;
+    opacity: 0; /* Начальная прозрачность для анимации */
+    transform: translateY(20px); /* Сдвиг вниз для эффекта появления */
+    animation: fadeIn 0.5s forwards; /* Добавляем анимацию */
+    transition: opacity 0.5s, transform 0.5s; /* Плавный переход для анимации */
+}
+
+ @keyframes fadeIn {
+        to {
+            opacity: 1; /* Конечная прозрачность */
+            transform: translateY(0); /* Сдвиг в исходное положение */
+        }
+    }
+
+    /* Добавляем задержку анимации для каждого квадрата */
+    .square:nth-child(1) {
+        animation-delay: 0.6s;
+    }
+    .square:nth-child(2) {
+        animation-delay: 0.8s;
+    }
+    .square:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+.card {
+    margin: 10px 0;
+}
+
+.bgg{
+    background: url("../img/fon.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.column-background {
+    background-color: #FF5F15;
+}
+
+.or2{
+    color: #FF5F15;
+    text-align: center;
+}
+
+.or1{
+    color: #FF5F15;
+}
+
+.ob{
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.card{
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    background-repeat: no-repeat;
+}
+
+.card-body{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height:100%
+}
+
+.card-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-icon{
+  width: 60%;
+  height: 60%;
+  pointer-events: none;
+}
+
+.card-button:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+.tx1{
+    color: #ffffff;
+}
+
+.tx2{
+    color: #FF5F15;
+}
+
+.bl{
+    color: #121934;
+}
+
+.bld{
+    font-weight: 800;
+}
+
+.blm{
+    font-weight: 600;
+}
+
+.bor{
+    background-color: #FF5F15;
+}
+
+.square-bbl{
+    width: auto;
+    height: auto;
+    padding: 80px 50px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column; /* Размещаем элементы по вертикали */
+    justify-content: center; /* Центруем текст по высоте */
+    align-items: center; /* Центруем текст по горизонтали */
+    text-align: center; 
+    margin: 20px auto;
+    border-radius: 20px;
+    opacity: 0; /* Начальная прозрачность для анимации */
+    transform: translateY(20px); /* Сдвиг вниз для эффекта появления */
+    animation: fadeIn 0.5s forwards; /* Добавляем анимацию */
+    transition: opacity 0.5s, transform 0.5s; /* Плавный переход для анимации */
+    background-color: #121934;
+}
+
+ @keyframes fadeIn {
+        to {
+            opacity: 1; /* Конечная прозрачность */
+            transform: translateY(0); /* Сдвиг в исходное положение */
+        }
+    }
+
+    /* Добавляем задержку анимации для каждого квадрата */
+    .square-bbl:nth-child(1) {
+        animation-delay: 0.6s;
+    }
+    .square-bbl:nth-child(2) {
+        animation-delay: 0.8s;
+    }
+    .square-bbl:nth-child(3) {
+        animation-delay: 1s;
+    }
+
+.btn-custom {
+    background-color:#FF5F15; border-color: #FF5F15; color: white;  padding: 20px 80px;
+}
+
+.btn-custom:focus,
+.btn-custom:active {
+    background-color: #FF5F15;
+    box-shadow: none;
+    color: white;
+}
+.btn-custom:hover {
+    color: #ffffff;
+    background-color: #8a340d;
+    border-color: #8a340d;
+}

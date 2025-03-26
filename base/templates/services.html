@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/service.css' %}">
+<div class="title">
+    <div class="or2">Услуги</div>
+    <h2 class="ob">Наши услуги</h2>
+<div>
+    <div class="container-fluid" style="">
+        <div class="container">
+                <div class="col-12">
+                    <div class="container mb-5">
+                        <!-- Форма для фильтрации -->
+                        <form method="GET" action="{% url 'services' %}" class="filter-form">
+                            <div class="form-group">
+                                <h4 for="category" class="filter-label">Выберите категорию:</h4>
+                                <select name="category" id="category" class="form-control filter-select">
+                                    <option value="">Все услуги</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                                            {{ category.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2" style="background-color: #FF5F15; border: none; padding: 10px 0; border-radius: 10px; width: 100%;">
+                                Применить фильтры
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Блок услуг -->
+                <div class="col-12">
+                    <div id="services-container">
+                        {% if services.exists %}
+                            {% for service in services %}
+                                <div class="service">
+                                    <img src="{{ service.image.url }}" alt="Картинка">
+                                    <div class="services-content">
+                                        <h4>{{ service.name }}</h4>
+                                        <p>{{ service.description }}</p>
+                                        <div class="service-button">
+                                            <a href="{% url 'service_detail' service.id %}" class="btn btn-primary mt-2">Читать полностью</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>Услуги не найдены.</p>
+                        {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+<div class="title">
+    <div class="or2">Профиль</div>
+<div>
+<div class="profile-container">
+    <!-- Левая панель -->
+    <div class="sidebar">
+
+        <button onclick="showForm('profile')">Обновить профиль</button>
+        <button onclick="showForm('avatar')">Обновить аватар</button>
+        <button onclick="showForm('password')">Изменить пароль</button>
+        <button onclick="showForm('settings')">Настройки уведомлений</button>
+        <button onclick="showForm('additionalInfo')">Дополнительная информация</button>
+    </div>
+
+    <!-- Правая часть (формы) -->
+    <div class="content">
+
+
+        <!-- Форма обновления профиля -->
+        <div id="profile" class="form-section hidden">
+            <h3 class="form-title">Обновить профиль</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ profile_form.as_p }}
+                <button type="submit" name="save_profile" class="save-button">Сохранить профиль</button>
+            </form>
+        </div>
+
+        <!-- Форма обновления аватара -->
+        <div id="avatar" class="form-section hidden">
+            {% if avatar and avatar.image %}
+                <div class="avatar-section">
+                    <h2 class="form-title">Ваш аватар:</h2>
+                    <img src="{{ avatar.image.url }}" alt="Avatar" class="avatar-image">
+                </div>
+            {% else %}
+                <p class="no-avatar">Аватар отсутствует.</p>
+            {% endif %}
+        
+            <form method="POST" enctype="multipart/form-data" class="centered-form">
+                {% csrf_token %}
+        
+                <!-- Поле для загрузки нового изображения -->
+                <div class="form-field">
+                    <label for="id_image">Выберите новое изображение:</label>
+                    {{ avatar_form.image }}
+                </div>
+        
+                <!-- Кнопка отправки -->
+                <button type="submit" name="save_avatar" class="save-button">Сохранить аватар</button>
+            </form>
+        </div>
+
+        <!-- Форма изменения пароля -->
+        <div id="password" class="form-section hidden">
+            <h3 class="form-title">Изменить пароль</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ password_form.as_p }}
+                <button type="submit" name="change_password" class="save-button">Изменить пароль</button>
+            </form>
+        </div>
+
+        <!-- Форма настроек уведомлений -->
+        <div id="settings" class="form-section hidden">
+            <h3 class="form-title">Настройки уведомлений</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ settings_form.as_p }}
+                <button type="submit" name="save_settings" class="save-button">Сохранить настройки</button>
+            </form>
+        </div>
+
+        <!-- Форма дополнительной информации -->
+        <div id="additionalInfo" class="form-section hidden">
+            <h3 class="form-title">Дополнительная информация</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ additional_info_form.as_p }}
+                <button type="submit" name="save_additional_info" class="save-button">Сохранить информацию</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>  
+    function showForm(formId) {
+    // Скрываем все формы
+    document.querySelectorAll('.form-section').forEach(form => form.classList.add('hidden'));
+
+    // Показываем выбранную форму
+    const form = document.getElementById(formId);
+    if (form) {
+        form.classList.remove('hidden');
+    }
+}
+</script>
+
+{% endblock %}

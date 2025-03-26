@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}">
+
+<div class="title">
+    <div class="or2">Новости</div>
+    <h2 class="ob">Наш Блог</h2>
+<div>
+
+<div class="row no-gutters" style="background-color:rgb(255, 255, 255); justify-content: center; color:#ffffff; padding:100px 0; overflow-x: hidden;">
+    <div class="col-12">
+        <div class="container mb-5">
+            <!-- Форма для фильтрации -->
+            <form method="GET" action="{% url 'news_list' %}" class="filter-form">
+                <div class="form-group">
+                    <h4 for="district" class="filter-label">Выберите район:</h4>
+                    <select name="district" id="districts" class="form-control filter-select">
+                        <option value="">Все районы</option>
+                        {% for district in districts %}
+                            <option value="{{ district.id }}" {% if request.GET.district == district.id|stringformat:"s" %}selected{% endif %}>
+                                {{ district.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="background-color: #FF5F15; border: none; padding: 10px 0; border-radius: 10px; width: 100%;">
+                    Применить фильтры
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {% for article in news %}
+    <div class="col-12 col-sm-6 col-md-4 mr-3 ml-3">
+        <div class="card news-card" style="background-image: url('{{ article.image.url }}'); background-size: cover; background-position: center; cursor: pointer;">
+            <div class="card-body">
+                <div class="news-overlay">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <h6 class="card-text">{{ article.published_at|date:"d.m.Y" }}</h6>
+                    <h6>Просмотры: {{ article.views }}</h6>
+                    <a href="{% url 'news_detail' article.id %}" class="btn btn-primary mt-2">Читать полностью</a>
+                </div>
+                <a href="#" class="card-button">
+                    <img src="{% static 'img/cart.svg' %}" alt="Иконка" class="button-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Пагинация -->
+    {% if news.has_other_pages %}
+    <div class="col-12 mt-5">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if news.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if request.GET.district %}&district={{ request.GET.district }}{% endif %}" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news.previous_page_number }}{% if request.GET.district %}&district={{ request.GET.district }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in news.paginator.page_range %}
+                    {% if news.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > news.number|add:'-3' and num < news.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if request.GET.district %}&district={{ request.GET.district }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if news.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ news.next_page_number }}{% if request.GET.district %}&district={{ request.GET.district }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+.contact-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.contact-link {
+    color: #FF5F15;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+.title {
+    background: linear-gradient(90deg, #1f2874, #121934);
+    color: #ffffff;
+    padding-top: 100px;
+} 
+
+.or2 {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #FF6F91, #FFC75F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ob {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 5rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+

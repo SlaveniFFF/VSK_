@@ -1,0 +1,155 @@
+/* Общие стили */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.title {
+    font-size: 36px;
+    color: #FF5F15;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.no-data {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Основное изображение */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-image {
+    max-width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Полное описание */
+.description-container {
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Дополнительный текст */
+.text-container {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-content p {
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+/* Дополнительная информация */
+.info-container {
+    margin-bottom: 20px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.info-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.info-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.info-subtitle {
+    font-size: 18px;
+    margin: 0;
+}
+
+.info-text {
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+/* Галерея изображений */
+.gallery-container {
+    margin-top: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.gallery-image {
+    max-width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* transition: transform 0.3s ease; */
+}
+
+/* .gallery-image:hover {
+    transform: scale(1.1);
+} */
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}

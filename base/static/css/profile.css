@@ -1,0 +1,254 @@
+/* Центрирование формы */
+.centered-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание элементов по центру */
+    text-align: center; /* Выравнивание текста по центру */
+    gap: 15px; /* Отступ между элементами */
+}
+label[for="id_image"]{
+    display: none;
+}
+.or2 {
+    font-size: 52px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #FF6F91, #FFC75F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.title {
+    background: linear-gradient(90deg, #1f2874, #121934);
+    color: #ffffff;
+    padding-top: 100px;
+} 
+/* Стиль для полей формы */
+.form-field {
+    width: 100%; /* Занимает всю доступную ширину */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание меток и полей слева */
+    text-align: center;
+    font-size: 20px;
+}
+
+/* Метки */
+label {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Поля ввода */
+input[type="file"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1a2440;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #222c50;
+}
+
+/* Чекбоксы */
+input[type="checkbox"] {
+    width: 24px; /* Увеличиваем размер чекбокса */
+    height: 24px;
+    accent-color: #FF5F15; /* Цвет галочки */
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin: auto;
+    appearance: none; /* Отключаем стандартный стиль */
+    background-color: #1a2440;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #FF5F15;
+    border-color: #FF5F15;
+}
+
+input[type="checkbox"]:hover {
+    border-color: #ff7f3f;
+}
+
+/* Кнопка отправки */
+.save-button {
+    width: 100%; /* Занимает всю доступную ширину */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
+    padding: 10px;
+    background-color: #FF5F15;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #ff7f3f;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column; /* Для адаптивности на маленьких экранах */
+    min-height: 100vh;
+    background-color: #121934;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+@media (min-width: 768px) {
+    .profile-container {
+        flex-direction: row; /* Две колонки на больших экранах */
+    }
+}
+
+/* Левая панель */
+.sidebar {
+    width: 100%; /* Занимает всю ширину на маленьких экранах */
+    padding: 20px;
+    background-color: #1a2440;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    text-align: center; /* Центрируем текст */
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        width: 250px; /* Фиксированная ширина на больших экранах */
+    }
+}
+
+.sidebar-title {
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #FF5F15;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+    background-color: #ff7f3f;
+}
+
+/* Правая часть */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    text-align: center; /* Центрируем текст */
+}
+
+.profile-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.avatar-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.avatar-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.no-avatar {
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* Формы */
+.form-section {
+    width: 100%; /* Занимает всю доступную ширину */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
+    margin: 0 auto; /* Центрируем форму по горизонтали */
+    padding: 20px;
+    background-color: #1a2440;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое формы */
+    text-align: center; /* Центрируем текст в форме */
+}
+
+.hidden {
+    display: none;
+}
+
+.form-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы формы */
+    text-align: center; /* Центрируем текст в форме */
+}
+
+form label,
+form a,
+form input,
+form textarea,
+form button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center; /* Центрируем текст в полях ввода */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .form-section {
+        max-width: 100%;
+    }
+}
